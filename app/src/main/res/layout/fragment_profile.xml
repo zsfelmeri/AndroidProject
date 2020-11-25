@@ -4,7 +4,7 @@
 <FrameLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="fragments.ProfileFragment">
+    tools:context="com.restaurantapp.fragments.ProfileFragment">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,13 +18,13 @@
             android:textSize="22sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.172"
+            app:layout_constraintHorizontal_bias="0.173"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.157" />
+            app:layout_constraintVertical_bias="0.155" />
 
         <TextView
-            android:id="@+id/tv_name"
+            android:id="@+id/tv_name_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="name"
@@ -34,32 +34,82 @@
             app:layout_constraintHorizontal_bias="0.416"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.156" />
+            app:layout_constraintVertical_bias="0.155" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Age: "
+            android:text="Phone: "
             android:textSize="22sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.218"
+            app:layout_constraintHorizontal_bias="0.163"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.212" />
 
         <TextView
-            android:id="@+id/tv_age"
+            android:id="@+id/tv_phone_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="age"
+            android:text="phone"
             android:textSize="22sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.416"
+            app:layout_constraintHorizontal_bias="0.422"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.212" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="E-mail: "
+            android:textSize="22sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.168"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.268" />
+
+        <TextView
+            android:id="@+id/tv_email_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="e-mail"
+            android:textSize="22sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.421"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.268" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Username: "
+            android:textSize="22sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.056"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.328" />
+
+        <TextView
+            android:id="@+id/tv_username_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="username"
+            android:textSize="22sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.474"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.328" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
 </layout>

@@ -7,7 +7,7 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.restaurantapp.databinding.ActivityMainBinding
-import fragments.LoginFragment
+import com.restaurantapp.fragments.LoginFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
