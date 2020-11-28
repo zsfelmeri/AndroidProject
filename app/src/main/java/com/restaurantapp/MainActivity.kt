@@ -6,6 +6,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.fragment.NavHostFragment
 import com.restaurantapp.databinding.ActivityMainBinding
 import com.restaurantapp.fragments.LoginFragment
 
@@ -14,15 +15,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-
-        supportFragmentManager.beginTransaction().apply {
-            replace(R.id.nav_host_fragment, LoginFragment())
-            addToBackStack(null)
-            commit()
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

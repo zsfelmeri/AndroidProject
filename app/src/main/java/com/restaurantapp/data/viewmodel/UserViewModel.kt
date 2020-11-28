@@ -8,13 +8,14 @@ import com.restaurantapp.data.UserDatabase
 import com.restaurantapp.data.repository.UserRepository
 import com.restaurantapp.data.model.User
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 class UserViewModel(application: Application): AndroidViewModel(application) {
 
 //    private val readAllData: LiveData<List<User>>
     private val repository: UserRepository
+    lateinit var checkLogin: LiveData<Int>
+    lateinit var checkRegister: LiveData<Int>
 
     init{
         val userDao = UserDatabase.getDatabase(application).userDao()
@@ -28,9 +29,15 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
         }
     }
 
-    fun findUser(email: String, username: String, phoneNum: String): Job {
-        return viewModelScope.launch(Dispatchers.IO) {
-            repository.findUser(email, username, phoneNum)
+    fun findUser(email: String, username: String, phoneNum: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            checkRegister = repository.findUser(email, username, phoneNum)
+        }
+    }
+
+    fun loginUser(username: String, password: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            checkLogin = repository.loginUser(username, password)
         }
     }
 }

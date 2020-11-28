@@ -1,6 +1,6 @@
-<layout>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+<FrameLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.restaurantapp.fragments.RegisterFragment">
@@ -42,10 +42,11 @@
             android:id="@+id/et_email_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
             android:hint="E-mail"
+            android:inputType="textEmailAddress"
             android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            android:layout_marginBottom="5dp"/>
+            android:paddingRight="15dp" />
 
         <EditText
             android:id="@+id/et_username_register"
@@ -60,10 +61,21 @@
             android:id="@+id/et_phoneNum_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
             android:hint="Phone number"
+            android:inputType="phone"
             android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            android:layout_marginBottom="25dp"/>
+            android:paddingRight="15dp" />
+
+        <EditText
+            android:id="@+id/et_password_register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="25dp"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp" />
 
         <Button
             android:id="@+id/btn_register_register"

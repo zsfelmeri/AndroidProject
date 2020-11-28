@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
+import androidx.navigation.findNavController
 import com.restaurantapp.R
 import com.restaurantapp.data.model.User
 import com.restaurantapp.data.viewmodel.UserViewModel
@@ -32,15 +32,15 @@ class RegisterFragment : Fragment() {
                 Toast.makeText(requireContext(), "All fields are required!", Toast.LENGTH_SHORT).show()
             }
             else{
-                val user = checkUser(binding.etEmailRegister.text.toString(), binding.etUsernameRegister.text.toString(), binding.etPhoneNumRegister.text.toString())
-                if(user == 0){
+                if(checkUser(binding.etEmailRegister.text.toString(), binding.etUsernameRegister.text.toString(), binding.etPhoneNumRegister.text.toString())){
                     addUserIntoDatabase(binding.etFirstNameRegister.text.toString(),
                         binding.etLastNameRegister.text.toString(),
                     binding.etEmailRegister.text.toString(),
                     binding.etUsernameRegister.text.toString(),
-                    binding.etPhoneNumRegister.text.toString())
+                    binding.etPhoneNumRegister.text.toString(),
+                    binding.etPasswordRegister.text.toString())
                     Toast.makeText(requireContext(), "You have been successfully registered!", Toast.LENGTH_SHORT).show()
-                    findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+                    it.findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
                 }
                 else{
                     Toast.makeText(requireContext(), "This user is already registered!", Toast.LENGTH_SHORT).show()
@@ -51,12 +51,13 @@ class RegisterFragment : Fragment() {
         return binding.root
     }
 
-    private fun checkUser(email: String, username: String, phoneNum: String): Int{
-        return Integer.parseInt(mUserViewModel.findUser(email, username, phoneNum).toString())
+    private fun checkUser(email: String, username: String, phoneNum: String): Boolean{
+        mUserViewModel.findUser(email, username, phoneNum)
+        return mUserViewModel.checkRegister.value == 0
     }
 
-    private fun addUserIntoDatabase(firstName: String, lastName: String, email: String, username: String, phoneNum: String){
-        val user = User(0, firstName, lastName, email, username, phoneNum)
+    private fun addUserIntoDatabase(firstName: String, lastName: String, email: String, username: String, phoneNum: String, password: String){
+        val user = User(0, firstName, lastName, email, username, phoneNum, password)
 
         mUserViewModel.addUser(user)
     }

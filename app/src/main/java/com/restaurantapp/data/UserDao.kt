@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.restaurantapp.data.model.User
+import kotlinx.coroutines.Job
 
 @Dao
 interface UserDao {
@@ -16,5 +17,8 @@ interface UserDao {
     fun readAllData(): LiveData<List<User>>
 
     @Query("SELECT count(*) FROM user_table WHERE email = :email AND username = :username AND phoneNumber = :phoneNum")
-    suspend fun findUser(email: String, username: String, phoneNum: String): Int
+    suspend fun findUser(email: String, username: String, phoneNum: String): LiveData<Int>
+
+    @Query("SELECT count(*) FROM user_table WHERE (email = :username OR phoneNumber = :username OR username = :username) AND password = :password")
+    suspend fun loginUser(username: String, password: String): LiveData<Int>
 }
