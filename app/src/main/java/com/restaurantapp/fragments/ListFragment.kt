@@ -10,13 +10,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.restaurantapp.R
-import com.restaurantapp.data.repository.RestaurantRepository
 import com.restaurantapp.data.viewmodel.RestaurantViewModel
 import com.restaurantapp.databinding.FragmentListBinding
 
 class ListFragment : Fragment() {
     private lateinit var binding: FragmentListBinding
-    private lateinit var mRestaurantViewModel: RestaurantRepository
+    private lateinit var mRestaurantViewModel: RestaurantViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {

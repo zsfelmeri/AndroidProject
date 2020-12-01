@@ -36,6 +36,9 @@
         <action
             android:id="@+id/action_listFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_listFragment_to_descriptionFragment"
+            app:destination="@id/descriptionFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -44,5 +47,16 @@
         <action
             android:id="@+id/action_profileFragment_to_listFragment"
             app:destination="@id/listFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/descriptionFragment"
+        android:name="com.restaurantapp.fragments.DescriptionFragment"
+        android:label="DescriptionFragment" >
+        <action
+            android:id="@+id/action_descriptionFragment_to_listFragment"
+            app:destination="@id/listFragment" />
+        <argument
+            android:name="currentRestaurant"
+            app:argType="com.restaurantapp.data.model.Restaurant" />
     </fragment>
 </navigation>

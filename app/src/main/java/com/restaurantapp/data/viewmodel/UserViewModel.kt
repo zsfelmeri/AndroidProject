@@ -14,8 +14,8 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
 
 //    private val readAllData: LiveData<List<User>>
     private val repository: UserRepository
-    lateinit var checkLogin: LiveData<Int>
-    lateinit var checkRegister: LiveData<Int>
+//    lateinit var checkLogin: LiveData<Int>
+//    lateinit var checkRegister: LiveData<Int>
 
     init{
         val userDao = UserDatabase.getDatabase(application).userDao()
@@ -31,13 +31,13 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
 
     fun findUser(email: String, username: String, phoneNum: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            checkRegister = repository.findUser(email, username, phoneNum)
+            repository.findUser(email, username, phoneNum)
         }
     }
 
     fun loginUser(username: String, password: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            checkLogin = repository.loginUser(username, password)
+            repository.loginUser(username, password)
         }
     }
 }

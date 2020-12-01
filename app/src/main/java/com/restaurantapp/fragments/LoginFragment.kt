@@ -29,19 +29,19 @@ class LoginFragment : Fragment() {
         }
 
         binding.btnLogin.setOnClickListener {
-            if (checkUser(binding.etUsername.text.toString(), binding.etPassword.text.toString())){
-                it.findNavController().navigate(R.id.action_loginFragment_to_listFragment)
-            }
-            else{
-                Toast.makeText(requireContext(), "Wrong username or password!", Toast.LENGTH_SHORT).show()
-            }
+//            if (checkUser(binding.etUsername.text.toString(), binding.etPassword.text.toString())){
+//                it.findNavController().navigate(R.id.action_loginFragment_to_listFragment)
+//            }
+//            else{
+//                Toast.makeText(requireContext(), "Wrong username or password!", Toast.LENGTH_SHORT).show()
+//            }
         }
 
         return binding.root
     }
 
-    private fun checkUser(username: String, password: String): Boolean{
-        mUserViewModel.loginUser(username, password)
-        return mUserViewModel.checkLogin.value != 0
-    }
+//    private fun checkUser(username: String, password: String): Boolean{
+//        mUserViewModel.loginUser(username, password)
+//        return mUserViewModel.checkLogin.value != 0
+//    }
 }

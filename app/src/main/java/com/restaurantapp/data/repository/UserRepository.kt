@@ -12,11 +12,11 @@ class UserRepository(private val userDao: UserDao) {
         userDao.addUser(user)
     }
 
-    suspend fun findUser(email: String, username: String, phoneNum: String): LiveData<Int> {
+    fun findUser(email: String, username: String, phoneNum: String): LiveData<Int> {
         return userDao.findUser(email, username, phoneNum)
     }
 
-    suspend fun loginUser(username: String, password: String): LiveData<Int> {
+    fun loginUser(username: String, password: String): LiveData<Int> {
         return userDao.loginUser(username, password)
     }
 }

@@ -3,6 +3,7 @@ package com.restaurantapp.fragments
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.restaurantapp.R
 import com.restaurantapp.data.model.Restaurant
@@ -24,6 +25,11 @@ class ListAdapter: RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
         holder.itemView.imageView.setImageResource(R.drawable.food)
         holder.itemView.tv_address.text = currentItem.address
         holder.itemView.tv_phoneNum.text = currentItem.phone
+
+        holder.itemView.rowLayout.setOnClickListener {
+//            val action = ListFragmentDirections.actionListFragmentToDescriptionFragment(currentItem)
+            holder.itemView.findNavController().navigate(R.id.action_listFragment_to_descriptionFragment)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -34,5 +40,4 @@ class ListAdapter: RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
         this.restaurantList = restaurant
         notifyDataSetChanged()
     }
-
 }
