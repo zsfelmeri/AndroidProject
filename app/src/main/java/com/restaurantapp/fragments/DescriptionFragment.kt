@@ -6,14 +6,13 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.restaurantapp.R
 import com.restaurantapp.data.model.Restaurant
@@ -24,6 +23,11 @@ class DescriptionFragment : Fragment() {
     private lateinit var binding: FragmentDescriptionBinding
     private lateinit var mRestaurantViewModel: RestaurantViewModel
     private val args by navArgs<DescriptionFragmentArgs>()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -125,5 +129,24 @@ class DescriptionFragment : Fragment() {
                 }
             }
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.action_profile -> {
+                val action = DescriptionFragmentDirections.actionDescriptionFragmentToProfileFragment(args.currentUser)
+                findNavController().navigate(action)
+            }
+            R.id.action_list -> {
+                findNavController().navigate(R.id.action_descriptionFragment_to_listFragment)
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 }

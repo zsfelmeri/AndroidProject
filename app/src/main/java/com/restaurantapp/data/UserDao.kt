@@ -15,9 +15,9 @@ interface UserDao {
     @Query("SELECT * FROM user_table WHERE (email = :username OR phoneNumber = :username OR username = :username) AND password = :password")
     fun getUser(username: String, password: String): User
 
-    @Query("SELECT count(*) FROM user_table WHERE email = :email AND username = :username AND phoneNumber = :phoneNum")
-    fun findUser(email: String, username: String, phoneNum: String): Int
-
     @Query("SELECT count(*) FROM user_table WHERE (email = :username OR phoneNumber = :username OR username = :username) AND password = :password")
     fun loginUser(username: String, password: String): Int
+
+    @Delete
+    fun deleteUser(user: User)
 }

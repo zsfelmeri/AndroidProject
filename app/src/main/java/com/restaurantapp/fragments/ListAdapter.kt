@@ -11,11 +11,12 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.restaurantapp.R
 import com.restaurantapp.data.model.Restaurant
+import com.restaurantapp.data.model.User
 import com.restaurantapp.data.viewmodel.RestaurantViewModel
 import kotlinx.android.synthetic.main.custom_row.view.*
 import kotlin.coroutines.coroutineContext
 
-class ListAdapter: RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
+class ListAdapter(val currentUser: User): RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
     private var restaurantList = emptyList<Restaurant>()
 
     class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
@@ -41,7 +42,7 @@ class ListAdapter: RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
         }
 
         holder.itemView.rowLayout.setOnClickListener {
-            val action = ListFragmentDirections.actionListFragmentToDescriptionFragment(currentItem)
+            val action = ListFragmentDirections.actionListFragmentToDescriptionFragment(currentItem, currentUser)
             holder.itemView.findNavController().navigate(action)
         }
     }

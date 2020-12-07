@@ -15,11 +15,11 @@ class UserRepository(private val userDao: UserDao) {
         return userDao.getUser(username, password)
     }
 
-    fun findUser(email: String, username: String, phoneNum: String): Int {
-        return userDao.findUser(email, username, phoneNum)
-    }
-
     fun loginUser(username: String, password: String): Int {
         return userDao.loginUser(username, password)
+    }
+
+    fun deleteUser (user: User) {
+        userDao.deleteUser(user)
     }
 }

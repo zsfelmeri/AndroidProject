@@ -23,6 +23,7 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
         val userDao = UserDatabase.getDatabase(application).userDao()
         repository = UserRepository(userDao)
 //        readAllData = repository.readAllData
+//        repository.deleteUser(User("", "", "", "", "", ""))
     }
 
     fun getUser(username: String, password: String): User {
@@ -33,10 +34,6 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.addUser(user)
         }
-    }
-
-    fun findUser(email: String, username: String, phoneNum: String): Int {
-        return repository.findUser(email, username, phoneNum)
     }
 
     fun loginUser(username: String, password: String): Int {

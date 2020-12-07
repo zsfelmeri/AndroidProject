@@ -11,19 +11,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
-import androidx.navigation.navArgs
-import androidx.navigation.ui.onNavDestinationSelected
-import com.google.android.material.navigation.NavigationView
 import com.restaurantapp.data.OpenTableAPI
 import com.restaurantapp.data.model.Cities
 import com.restaurantapp.data.model.ResponseData
 import com.restaurantapp.data.model.Restaurant
 import com.restaurantapp.data.viewmodel.RestaurantViewModel
 import com.restaurantapp.databinding.ActivityMainBinding
-import com.restaurantapp.fragments.LoginFragment
-import com.restaurantapp.fragments.LoginFragment.Companion.USER_LOGIN
-import com.restaurantapp.fragments.RegisterFragment
-import kotlinx.coroutines.currentCoroutineContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -54,12 +47,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
 //        return super.onCreateOptionsMenu(menu)
-        menuInflater.inflate(R.menu.menu, menu)
-
-//        if(!(supportFragmentManager.findFragmentById(R.id.main_fragment)?.tag.equals("fragment_login") ||
-//                supportFragmentManager.findFragmentById(R.id.main_fragment)?.tag.equals("fragment_register"))){
-//            menuInflater.inflate(R.menu.menu, menu)
-//        }
+//        menuInflater.inflate(R.menu.menu, menu)
+        menu?.clear()
         return true
     }
 
@@ -75,27 +64,27 @@ class MainActivity : AppCompatActivity() {
 //        return true
 //    }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(supportFragmentManager.findFragmentById(R.id.loginFragment)?.isVisible == true) {
-            item.isEnabled = false
-        }
-        else {
-            item.isEnabled = true
-            when (item.itemId) {
-                R.id.action_profile -> {
-//                navController.navigate(R.id.action_listFragment_to_profileFragment)
-//                    Toast.makeText(this.applicationContext, "Profile", Toast.LENGTH_SHORT).show()
-                    navController.navigate(R.id.profileFragment)
-                }
-                R.id.action_list -> {
-//                navController.navigate(R.id.action_profileFragment_to_listFragment)
-//                    Toast.makeText(this.applicationContext, "List", Toast.LENGTH_SHORT).show()
-                    navController.navigate(R.id.listFragment)
-                }
-            }
-        }
-        return item.onNavDestinationSelected(navController) || super.onOptionsItemSelected(item)
-    }
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        if(supportFragmentManager.findFragmentById(R.id.loginFragment)?.isVisible == true) {
+//            item.isEnabled = false
+//        }
+//        else {
+//            item.isEnabled = true
+//            when (item.itemId) {
+//                R.id.action_profile -> {
+////                navController.navigate(R.id.action_listFragment_to_profileFragment)
+////                    Toast.makeText(this.applicationContext, "Profile", Toast.LENGTH_SHORT).show()
+//                    navController.navigate(R.id.profileFragment)
+//                }
+//                R.id.action_list -> {
+////                navController.navigate(R.id.action_profileFragment_to_listFragment)
+////                    Toast.makeText(this.applicationContext, "List", Toast.LENGTH_SHORT).show()
+//                    navController.navigate(R.id.listFragment)
+//                }
+//            }
+//        }
+//        return item.onNavDestinationSelected(navController) || super.onOptionsItemSelected(item)
+//    }
 
     private fun getDataFromAPI(){
         val retrofit = Retrofit.Builder()

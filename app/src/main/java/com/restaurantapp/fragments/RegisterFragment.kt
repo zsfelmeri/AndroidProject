@@ -28,12 +28,14 @@ class RegisterFragment : Fragment() {
         mUserViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
 
         binding.btnRegisterRegister.setOnClickListener {
-            if(inputCheck(binding.etFirstNameRegister.text.toString(), binding.etLastNameRegister.text.toString(), binding.etEmailRegister.text.toString(), binding.etUsernameRegister.text.toString(),
+            if(!inputCheck(binding.etFirstNameRegister.text.toString(), binding.etLastNameRegister.text.toString(), binding.etEmailRegister.text.toString(), binding.etUsernameRegister.text.toString(),
                             binding.etPhoneNumRegister.text.toString(), binding.etPasswordRegister.text.toString())){
                 Toast.makeText(requireContext(), "All fields are required!", Toast.LENGTH_SHORT).show()
             }
             else{
-                if(checkUser(binding.etEmailRegister.text.toString(), binding.etUsernameRegister.text.toString(), binding.etPhoneNumRegister.text.toString())){
+                if(checkUser(binding.etEmailRegister.text.toString(), binding.etPasswordRegister.text.toString()) &&
+                        checkUser(binding.etUsernameRegister.text.toString(), binding.etPasswordRegister.text.toString()) &&
+                        checkUser(binding.etPhoneNumRegister.text.toString(), binding.etPasswordRegister.text.toString())){
                     addUserIntoDatabase(binding.etFirstNameRegister.text.toString(),
                         binding.etLastNameRegister.text.toString(),
                         binding.etEmailRegister.text.toString(),
@@ -52,19 +54,14 @@ class RegisterFragment : Fragment() {
         return binding.root
     }
 
-    private fun checkUser(email: String, username: String, phoneNum: String): Boolean{
-        val user = mUserViewModel.findUser(email, username, phoneNum)
+    private fun checkUser(username: String, password: String): Boolean{
+        val user = mUserViewModel.loginUser(username, password)
         return user == 0
     }
 
     private fun addUserIntoDatabase(firstName: String, lastName: String, email: String, username: String, phoneNum: String, password: String){
-        if(inputCheck(firstName, lastName, email, username, phoneNum, password)) {
-            val user = User(firstName, lastName, email, username, phoneNum, password)
-            mUserViewModel.addUser(user)
-        }
-        else{
-            Toast.makeText(requireContext(), "Please fill all fields to register!", Toast.LENGTH_SHORT).show()
-        }
+        val user = User(firstName, lastName, email, username, phoneNum, password)
+        mUserViewModel.addUser(user)
     }
 
     private fun inputCheck(firstName: String, lastName: String, email: String, username: String, phoneNum: String, password: String): Boolean{

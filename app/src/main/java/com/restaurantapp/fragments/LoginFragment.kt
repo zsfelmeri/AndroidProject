@@ -14,10 +14,6 @@ import com.restaurantapp.data.viewmodel.UserViewModel
 import com.restaurantapp.databinding.FragmentLoginBinding
 
 class LoginFragment : Fragment() {
-    companion object {
-        var USER_LOGIN = false
-    }
-
     private lateinit var binding: FragmentLoginBinding
     private lateinit var mUserViewModel: UserViewModel
 
@@ -27,7 +23,6 @@ class LoginFragment : Fragment() {
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false)
         mUserViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
-        USER_LOGIN = false
 
         binding.btnRegister.setOnClickListener {
             it.findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
@@ -36,14 +31,8 @@ class LoginFragment : Fragment() {
         binding.btnLogin.setOnClickListener {
             if (checkUser(binding.etUsername.text.toString(), binding.etPassword.text.toString())){
                 val user = mUserViewModel.getUser(binding.etUsername.text.toString(), binding.etPassword.text.toString())
-                val bundle = Bundle()
-                bundle.putString("NAME", "${user.firstName} ${user.lastName}");
-                bundle.putString("PHONE", user.phoneNumber)
-                bundle.putString("EMAIL", user.email)
-                bundle.putString("USERNAME", user.username);
-
-                USER_LOGIN = true
-                it.findNavController().navigate(R.id.action_loginFragment_to_listFragment, bundle)
+                val action = LoginFragmentDirections.actionLoginFragmentToListFragment(user)
+                it.findNavController().navigate(action)
             }
             else{
                 Toast.makeText(requireContext(), "Wrong username or password!", Toast.LENGTH_SHORT).show()
