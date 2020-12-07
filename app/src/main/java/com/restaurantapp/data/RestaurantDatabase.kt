@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.restaurantapp.data.model.Restaurant
 
-@Database(entities = [Restaurant::class], version = 1, exportSchema = false)
+@Database(entities = [Restaurant::class], version = 4, exportSchema = false)
 abstract class RestaurantDatabase: RoomDatabase() {
     abstract fun restaurantDao(): RestaurantDao
 
@@ -24,7 +24,7 @@ abstract class RestaurantDatabase: RoomDatabase() {
                         context.applicationContext,
                         RestaurantDatabase::class.java,
                         "restaurant_database"
-                ).build()
+                ).fallbackToDestructiveMigration().allowMainThreadQueries().build()
                 INSTANCE = instance
                 return instance
             }

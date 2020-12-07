@@ -28,38 +28,38 @@ class RegisterFragment : Fragment() {
         mUserViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
 
         binding.btnRegisterRegister.setOnClickListener {
-            if(binding.etFirstNameRegister.text.toString().isEmpty() || binding.etLastNameRegister.text.toString().isEmpty() || binding.etEmailRegister.text.toString().isEmpty() ||
-                    binding.etUsernameRegister.text.toString().isEmpty() || binding.etPhoneNumRegister.text.isEmpty()){
+            if(inputCheck(binding.etFirstNameRegister.text.toString(), binding.etLastNameRegister.text.toString(), binding.etEmailRegister.text.toString(), binding.etUsernameRegister.text.toString(),
+                            binding.etPhoneNumRegister.text.toString(), binding.etPasswordRegister.text.toString())){
                 Toast.makeText(requireContext(), "All fields are required!", Toast.LENGTH_SHORT).show()
             }
             else{
-//                if(checkUser(binding.etEmailRegister.text.toString(), binding.etUsernameRegister.text.toString(), binding.etPhoneNumRegister.text.toString())){
+                if(checkUser(binding.etEmailRegister.text.toString(), binding.etUsernameRegister.text.toString(), binding.etPhoneNumRegister.text.toString())){
                     addUserIntoDatabase(binding.etFirstNameRegister.text.toString(),
                         binding.etLastNameRegister.text.toString(),
-                    binding.etEmailRegister.text.toString(),
-                    binding.etUsernameRegister.text.toString(),
-                    binding.etPhoneNumRegister.text.toString(),
-                    binding.etPasswordRegister.text.toString())
+                        binding.etEmailRegister.text.toString(),
+                        binding.etUsernameRegister.text.toString(),
+                        binding.etPhoneNumRegister.text.toString(),
+                        binding.etPasswordRegister.text.toString())
                     Toast.makeText(requireContext(), "You have been successfully registered!", Toast.LENGTH_SHORT).show()
                     it.findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
-//                }
-//                else{
-//                    Toast.makeText(requireContext(), "This user is already registered!", Toast.LENGTH_SHORT).show()
-//                }
+                }
+                else{
+                    Toast.makeText(requireContext(), "This user is already registered!", Toast.LENGTH_SHORT).show()
+                }
             }
         }
 
         return binding.root
     }
 
-//    private fun checkUser(email: String, username: String, phoneNum: String): Boolean{
-//        mUserViewModel.findUser(email, username, phoneNum)
-//        return mUserViewModel.checkRegister.value == 0
-//    }
+    private fun checkUser(email: String, username: String, phoneNum: String): Boolean{
+        val user = mUserViewModel.findUser(email, username, phoneNum)
+        return user == 0
+    }
 
     private fun addUserIntoDatabase(firstName: String, lastName: String, email: String, username: String, phoneNum: String, password: String){
         if(inputCheck(firstName, lastName, email, username, phoneNum, password)) {
-            val user = User(0, firstName, lastName, email, username, phoneNum, password)
+            val user = User(firstName, lastName, email, username, phoneNum, password)
             mUserViewModel.addUser(user)
         }
         else{

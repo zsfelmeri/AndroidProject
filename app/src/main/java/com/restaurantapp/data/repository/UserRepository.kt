@@ -1,6 +1,5 @@
 package com.restaurantapp.data.repository
 
-import androidx.lifecycle.LiveData
 import com.restaurantapp.data.UserDao
 import com.restaurantapp.data.model.User
 
@@ -12,11 +11,15 @@ class UserRepository(private val userDao: UserDao) {
         userDao.addUser(user)
     }
 
-    fun findUser(email: String, username: String, phoneNum: String): LiveData<Int> {
+    fun getUser(username: String, password: String): User {
+        return userDao.getUser(username, password)
+    }
+
+    fun findUser(email: String, username: String, phoneNum: String): Int {
         return userDao.findUser(email, username, phoneNum)
     }
 
-    fun loginUser(username: String, password: String): LiveData<Int> {
+    fun loginUser(username: String, password: String): Int {
         return userDao.loginUser(username, password)
     }
 }
