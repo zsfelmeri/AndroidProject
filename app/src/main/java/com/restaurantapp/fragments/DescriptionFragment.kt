@@ -59,7 +59,6 @@ class DescriptionFragment : Fragment() {
         }
 
         binding.ivFavoriteSet.setOnClickListener {
-//            if(!mRestaurantViewModel.getFavoriteById(args.currentRestaurant.id)){
             if(!args.currentRestaurant.favorite) {
                 updateRestaurant(true)
                 binding.ivFavoriteSet.setImageResource(R.drawable.filled_start)
@@ -68,7 +67,6 @@ class DescriptionFragment : Fragment() {
                 updateRestaurant(false)
                 binding.ivFavoriteSet.setImageResource(R.drawable.empty_star)
             }
-//            it.findNavController().navigate(R.id.action_descriptionFragment_to_listFragment)
         }
 
         return binding.root
@@ -103,7 +101,7 @@ class DescriptionFragment : Fragment() {
             ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
 
     private fun requestPermissions(){
-        var permissionsToRequest = mutableListOf<String>()
+        val permissionsToRequest = mutableListOf<String>()
         if(!hasCallPhonePermission()){
             permissionsToRequest.add(Manifest.permission.CALL_PHONE)
         }

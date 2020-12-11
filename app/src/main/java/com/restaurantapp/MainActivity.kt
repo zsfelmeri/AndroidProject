@@ -45,86 +45,14 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-//        return super.onCreateOptionsMenu(menu)
-//        menuInflater.inflate(R.menu.menu, menu)
-        menu?.clear()
-        return true
-    }
-
-//    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
-//        if(USER_LOGIN){
-//            menu?.findItem(R.id.action_profile)?.isVisible = true
-//            menu?.findItem(R.id.action_list)?.isVisible = true
-//        }
-//        else{
-//            menu?.findItem(R.id.action_profile)?.isVisible = false
-//            menu?.findItem(R.id.action_list)?.isVisible = false
-//        }
-//        return true
-//    }
-
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        if(supportFragmentManager.findFragmentById(R.id.loginFragment)?.isVisible == true) {
-//            item.isEnabled = false
-//        }
-//        else {
-//            item.isEnabled = true
-//            when (item.itemId) {
-//                R.id.action_profile -> {
-////                navController.navigate(R.id.action_listFragment_to_profileFragment)
-////                    Toast.makeText(this.applicationContext, "Profile", Toast.LENGTH_SHORT).show()
-//                    navController.navigate(R.id.profileFragment)
-//                }
-//                R.id.action_list -> {
-////                navController.navigate(R.id.action_profileFragment_to_listFragment)
-////                    Toast.makeText(this.applicationContext, "List", Toast.LENGTH_SHORT).show()
-//                    navController.navigate(R.id.listFragment)
-//                }
-//            }
-//        }
-//        return item.onNavDestinationSelected(navController) || super.onOptionsItemSelected(item)
-//    }
-
     private fun getDataFromAPI(){
         val retrofit = Retrofit.Builder()
             .baseUrl("https://opentable.herokuapp.com/api/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
         val openTableAPI: OpenTableAPI = retrofit.create(OpenTableAPI::class.java)
-//        val myCall = openTableAPI.getRestaurantsInChicago()
-//        myCall.enqueue(object : Callback<ResponseData> {
-//            override fun onResponse(call: Call<ResponseData>, response: Response<ResponseData>) {
-//                val restaurants = response.body()
-//                if (restaurants != null) {
-//                    for (restaurant in restaurants.restaurants) {
-//                        val data = Restaurant(
-//                            restaurant.id,
-//                            restaurant.name,
-//                            restaurant.address,
-//                            restaurant.city,
-//                            restaurant.state,
-//                            restaurant.area,
-//                            restaurant.postal_code,
-//                            restaurant.country,
-//                            restaurant.phone,
-//                            restaurant.lat,
-//                            restaurant.lng,
-//                            restaurant.price,
-//                            restaurant.reserve_url,
-//                            restaurant.mobile_reserve_url,
-//                            restaurant.image_url
-//                        )
-//                        mRestaurantViewModel.addRestaurant(data)
-//                    }
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<ResponseData>, t: Throwable) {
-//                Log.e("err", t.message.toString())
-//            }
-//        })
 
+//      get all restaurants from the api
         val myCallCities: Call<Cities> = openTableAPI.getCities()
         myCallCities.enqueue(object: Callback<Cities> {
             override fun onResponse(call: Call<Cities>, response: Response<Cities>) {
@@ -162,8 +90,9 @@ class MainActivity : AppCompatActivity() {
                                                 restaurant.mobile_reserve_url,
                                                 restaurant.image_url,
                                                     false,
-                                                    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
+                                                    "ID: ${restaurant.id}\n Name: ${restaurant.name}\n Address: ${restaurant.address}\n City: ${restaurant.city}\n State: ${restaurant.state}\n Postal Code: ${restaurant.postal_code}\n Phone: ${restaurant.phone}\n Price: ${restaurant.price}\n"
                                             )
+//                                            add restaurant to database
                                             mRestaurantViewModel.addRestaurant(data)
                                         }
                                     }

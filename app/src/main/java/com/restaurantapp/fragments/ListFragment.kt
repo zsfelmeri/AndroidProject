@@ -106,9 +106,6 @@ class ListFragment : Fragment()/*, NavigationView.OnNavigationItemSelectedListen
             })
         }
 
-//        mRestaurantViewModel.readAllData.observe(viewLifecycleOwner, Observer { restaurant ->
-//            listAdapter.setData(restaurant)
-//        })
         recyclerView.setHasFixedSize(true)
 
         return binding.root

@@ -16,13 +16,11 @@ import kotlinx.coroutines.launch
 
 class UserViewModel(application: Application): AndroidViewModel(application) {
 
-//    private val readAllData: LiveData<List<User>>
     private val repository: UserRepository
 
     init{
         val userDao = UserDatabase.getDatabase(application).userDao()
         repository = UserRepository(userDao)
-//        readAllData = repository.readAllData
 //        repository.deleteUser(User("", "", "", "", "", ""))
     }
 
