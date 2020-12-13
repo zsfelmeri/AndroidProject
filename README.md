@@ -5,7 +5,7 @@
 
 The user can select restaurants where s/he wants to eat.
 
-##### Functionalities
+#### Functionalities
 At firs launch of the application the user is taken to the **login** page, where s/he can navigate to the **register** page or after login s/he can see the list of the restaurants. On the **restaurants** page the user can filter the restaurants by city or by her/his favorites. After login the user has access to the *toolbar* menu. The menu has two *actions*:
    1. Profile
    2. Restaurants
